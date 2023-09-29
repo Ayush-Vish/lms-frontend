@@ -58,3 +58,9 @@
     @tailwind components;
     @tailwind utilities;
 ```
+
+## Installing all libraries and plugins 
+
+```bash
+    npm i @reduxjs/toolkit react-redux react-router-dom react-icons react-chartjs-2 chart.js diasyui axios react-hot-toast @tailwindcss/line-clamp
+```
