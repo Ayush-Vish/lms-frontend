@@ -23,6 +23,38 @@
     npm run dev 
 ```
 
+## Setting up TAILWIND
 
+1. Installing
 
+```bash
+    npm install -D tailwindcss
+```
+2. Creating Tailwing config file 
 
+```bash
+    npx tailwindcss init
+
+```
+
+3. Make config file like this 
+
+```
+    /** @type {import('tailwindcss').Config} */
+    export default {
+    content: ["./src/**/*.{html,js , jsx , ts , tsx}"],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
+    }
+
+        
+```
+4. Add the tailwind directives at the top of the directives file . 
+
+```
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+```
