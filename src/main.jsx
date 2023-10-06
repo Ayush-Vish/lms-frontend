@@ -11,8 +11,9 @@ import store from './Redux/store'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider  store={store} >
+   
     <BrowserRouter>
-      <App />
+      <    App    />
       <Toaster/>
     </BrowserRouter>
   </Provider>

@@ -28,13 +28,18 @@
 1. Installing
 
 ```bash
-    npm install -D tailwindcss
+    npm install -D tailwindcss npm install -D tailwindcss postcss autoprefixer
+
 ```
-2. Creating Tailwing config file 
+2. Creating Tailwing config file and postcss confog file 
 
 ```bash
     npx tailwindcss init
 
+```
+
+```bash
+    npm tailwindcss init -p 
 ```
 
 3. Make config file like this 
@@ -42,12 +47,13 @@
 ```
     /** @type {import('tailwindcss').Config} */
     export default {
-    content: ["./src/**/*.{html,js , jsx , ts , tsx}"],
+    content: [ "./index.html",  "./src/**/*.{html,js , jsx , ts , tsx}"],
     theme: {
         extend: {},
     },
     plugins: [],
     }
+
 
         
 ```
