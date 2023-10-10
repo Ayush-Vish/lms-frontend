@@ -31,7 +31,6 @@ function AboutUs() {
               alt="about main image"
               className="drop-shadow-2xl"
               src={aboutMainImage}
-              alt=""
             />
           </div>
         </div>
