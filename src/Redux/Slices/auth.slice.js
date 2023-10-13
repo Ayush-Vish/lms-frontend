@@ -33,11 +33,12 @@ export const login  = createAsyncThunk("/auth/login" , async( data) => {
         toast.promise(res , {
             loading: "Wait! Authentication in progress..." , 
             success : (data ) =>{  
-                
-                return data?.data.message 
+                console.log(data)
+                return data?.data?.message 
             }, 
             error : "Failed to login " 
         })
+        console.log((await res).data)
         return (await res).data; 
 
     } catch (e) { 
@@ -45,18 +46,42 @@ export const login  = createAsyncThunk("/auth/login" , async( data) => {
     }
 }) 
 
+export const logout = createAsyncThunk("/auth/logout" ,async (data) =>{ 
+    try{
+        const response = axiosInstance.get("/user/logout")
+         toast.promise(response,  {
+            loading : "Wait logging Out", 
+            success : (data) => {
+                return data?.data?.message
+            }, 
+            error : "Failed to logout"
+         })
+        return (await response).data
+    }   
+    catch(e)  { 
+        toast.error(e?.response?.data?.message) 
+    }
+})
+
 const authSlice = createSlice({
     name : "auth", 
     initialState,
     reducers : {} ,  
     extraReducers: (builder) => { 
-        builder.addCase(login.fulfilled , (state ,action  ) =>{
+        builder
+        .addCase(login.fulfilled , (state ,action  ) =>{
             localStorage.setItem("data" ,JSON.stringify(action?.payload?.user)); 
             localStorage.setItem("isLogged" ,true ) 
             localStorage.setItem("role" ,action?.payload?.user?.role ) 
             state.isLoggedIn =true 
             state.data =action.payload?.user
             state.role =  action?.payload?.user.role
+        })
+        .addCase(logout.fulfilled , (state ,action )=>  {
+            localStorage.clear() 
+            state.isLoggedIn =false 
+            state.data =""
+            state.role =  ""
         })
     },
 
