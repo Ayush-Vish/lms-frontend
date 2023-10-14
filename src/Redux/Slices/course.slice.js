@@ -3,22 +3,22 @@ import toast from "react-hot-toast"
 
 import axiosInstance from "../../Helpers/axiosInstance"
 
-const initailState = {
-    courseData : [ ] 
+const initialState = {
+    courseData : [] 
 }
 
 
-export const getAllCourses = createAsyncThunk("/course/get" , async(data) => { 
+export const getAllCourses = createAsyncThunk("/course/get" , async() => { 
     try {
-        const response = axiosInstance.get("/course/") 
+        const response =  axiosInstance.get("/courses")  
+        console.log(response)
         toast.promise(response ,  {
             loading: "Wait Loading Courses....",
-            success : (data) => { 
-                return data.data.message
-            }, 
+            success : "Success in Loading Courses",  
             error : "Failed to fetch Courses"
         })
-        return (await response).data?.course
+
+        return (await response).data?.courses
     } catch (error) {
         toast.error(error.response?.data?.message)
     }
@@ -28,9 +28,14 @@ export const getAllCourses = createAsyncThunk("/course/get" , async(data) => {
 
 const courseSlice = createSlice({
     name :  "courses" , 
-    initailState ,
+    initialState ,
     reducers :{} ,
     extraReducers : (builder) =>  {
+        builder.addCase(getAllCourses.fulfilled , (state, action ) => {
+            if(action.payload) {
+                state.courseData =  [...action.payload]
+            }
+        })
 
     }
 })
