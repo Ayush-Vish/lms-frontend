@@ -1,10 +1,15 @@
-import { useNavigate } from "react-router-dom";
  
+import { useNavigate } from "react-router-dom";
 function CourseCard ({data}) {  
     console.log(data)
-    const navigate = useNavigate() 
+    const navigate = useNavigate()   
+    const handler = ( ) =>  {
+        navigate("/course/description"  , {state: {...data}})
+    }
     return (
-        <div  className="text-white w-[22rem] h-[430px] shadow-lg cursor-pointer  group overflow-hidden bg-zinc-700" >
+        <div
+            onClick={handler}
+          className="text-white w-[22rem] h-[430px] shadow-lg cursor-pointer  group overflow-hidden bg-zinc-700" >
             <div className="overflow-hidden">
                 
                 <img alt="course thumbnail" className="h-48 w-full rounded-tl-lg rounded-tr-lg group-hover:scale-[1,2] transition-all ease-in-out duration-300" src={data?.thumbnail?.secure_url}  />
