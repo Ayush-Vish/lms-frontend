@@ -4,7 +4,9 @@
 import { Route, Routes } from 'react-router-dom'
 
 import AboutUs from './Pages/AboutUs'
+import ContactUs from './Pages/ContactUs'
 import CourseList from './Pages/Course/CourseList'
+import Denied from './Pages/Denied'
 import HomePage from './Pages/HomePage'
 import Login from './Pages/Login'
 import NotFound from './Pages/NotFound'
@@ -18,7 +20,9 @@ function App() {
         <Route path='*' element={<NotFound/>}  />
         <Route  path="/signup" element={<SignUp/>} /> 
         <Route path='/login' element={<Login/>} ></Route> 
-        <Route path='/courses' element={<CourseList/>} ></Route>
+        <Route path='/courses' element={<CourseList/>} ></Route> 
+        <Route path='/contact' element={<ContactUs/>} /> 
+        <Route path='/denied' element={<Denied/>} />
       </Routes>
   )
 }
