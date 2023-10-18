@@ -31,7 +31,7 @@
     npm install -D tailwindcss npm install -D tailwindcss postcss autoprefixer
 
 ```
-2. Creating Tailwing config file and postcss confog file 
+2. Creating Tailwind config file and postcss config file 
 
 ```bash
     npx tailwindcss init

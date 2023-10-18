@@ -28,7 +28,7 @@ function App() {
         <Route  path='/course/description' element={<CourseDescription/>} />  
         <Route element={<RequireAuth allowedRole={["ADMIN"]} />} >
           <Route path='course/create' element={<CreateCourse/>} />
-        </Route>
+        </Route> 
         <Route path='*' element={<NotFound/>}  />
       </Routes>
   )
