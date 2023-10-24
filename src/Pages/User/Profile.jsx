@@ -33,7 +33,7 @@ function Profile (  )  {
                                 <button className="">Change Password </button>
                             </Link>
                             <Link to="/user/editProfile"  className="w-1/2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm font-semibold py-2 cursor-pointer text-center  " >
-                                <button className="">Change Password </button>
+                                <button className="">Edit Profile </button>
                             </Link>
                         </div>
                         {
