@@ -5,7 +5,7 @@ import axiosInstance from "../../Helpers/axiosInstance"
 const  initialState = { 
     key:  "" ,
     subscription_id: "",
-    isPaymentVerified: "",
+    isPaymentVerified: false,
     allPayments : "",
     finalMonths : "",
     monthlySalesRecord : ""
@@ -37,8 +37,9 @@ export const verifyUserPayment = createAsyncThunk("/razorpay/verify" ,async (dat
             razorpay_payment_id:data.razorpay_payment_id ,
             razorpay_subscription_id: data.razorpay_subscription_id,
             razorpay_signature: data.razorpay_signature
-
-        })
+ 
+        }) 
+        console.log("sbckjsbjkbsdjkbjskdb")
         return (await response).data
     } catch (error) {
         toast.error(error?.response?.data?.message) ;
@@ -73,8 +74,6 @@ export const cancelSubscription = createAsyncThunk("/razorpay/unsubscribe" ,asyn
 }) 
 
 
-
-
 const razorpaySlice = createSlice({
     name:"razorpay",
     initialState,
@@ -87,15 +86,20 @@ const razorpaySlice = createSlice({
         .addCase(purchaseCourseBundle.fulfilled , (state ,action) => {
             state.subscription_id = action.payload.subscription_id;
         })
-        .addCase(verifyUserPayment.fulfilled , (state   ,action )=> {
-            toast.success(action.payload.message) ;
-
-            state.isPaymentVerified = action.payload.success;
-        })
         .addCase(verifyUserPayment.rejected  ,(state ,action) => {
             toast.success(action.payload.message) ;
-
+            
             state.isPaymentVerified = action.payload.success;
+            console.log("false")
+        })
+        .addCase(verifyUserPayment.fulfilled , (state   ,action )=> {
+            console.log(action)
+            toast.success(action?.payload?.message) ;
+            console.log(action.payload.success)
+            state.isPaymentVerified = action?.payload?.success?.toString(); 
+            console.log("True ")
+            console.log(state);
+
         })
         .addCase(getPaymentRecord.fulfilled , (state ,action )=> {
             state.allPayments = action.payload.allPayments;
