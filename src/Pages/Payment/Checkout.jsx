@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import HomeLayout from "../../LAyout/HomeLayout"
 import { getRazorpayId, purchaseCourseBundle, verifyUserPayment } from "../../Redux/Slices/razorpay.slice";
+import { getUserData } from "../../Redux/Slices/auth.slice";
 
 function Checkout ( )  {
 
@@ -39,7 +40,7 @@ function Checkout ( )  {
         const options = {
             key:razorpayKey, 
             subscription_id,
-            name :"Coursify pvt Ltd",
+            name :"ayush.codes private limited",
             description : "Subscription", 
             theme: {
                 color :"#F37254"
@@ -57,7 +58,8 @@ function Checkout ( )  {
 
                 const res= await dispatch(verifyUserPayment(paymentDetails)) ;  
  
-
+                await dispatch(getUserData()) ;
+                
                 (res.payload.success )?  navigate("/checkout/success")  : navigate("/checkout/fail")
             }
         }
