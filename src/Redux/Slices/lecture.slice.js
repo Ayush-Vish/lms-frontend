@@ -9,7 +9,7 @@ const initialState=  {
 }
 export const getCourseLectures = createAsyncThunk("/course/lecture/get" , async (cid) =>  {
     try {
-        const response= axiosInstance.get(`/course/${cid}`) ;
+        const response= axiosInstance.get(`/courses/${cid}`) ;
         toast.promise(response ,{
             loading :"Fetching Course Lectures", 
             success :"Course lecture fetched" ,
@@ -21,7 +21,7 @@ export const getCourseLectures = createAsyncThunk("/course/lecture/get" , async 
         toast.error(error?.response.data?.message);
     }
 })
-export const addLecture = createAsyncThunk("/course/lecture/add" , async (data) => {
+export const addLecture = createAsyncThunk("/courses/lecture/add" , async (data) => {
     try { 
         const formData= new FormData(data) ;
         formData.append("lecture", data.lecture) ;
@@ -29,7 +29,7 @@ export const addLecture = createAsyncThunk("/course/lecture/add" , async (data) 
         formData.append("decription", data.description) ;
 
 
-        const response= axiosInstance.post(`/course/${data.id}`  , formData) ;
+        const response= axiosInstance.post(`/courses/${data.id}`  , formData) ;
         toast.promise(response ,{
             loading :"Adding Lectures", 
             success :"Lecture added Successfully",
@@ -45,7 +45,7 @@ export const deleteLecture = createAsyncThunk("/course/lecture/delete" , async (
     try { 
         
 
-        const response= axiosInstance.delete(`/course/${data.courseId}/lecture/${data.lectureId}` ) ;
+        const response= axiosInstance.delete(`/courses/${data.courseId}/lecture/${data.lectureId}` ) ;
         toast.promise(response ,{
             loading :"Deleting  Course Lectures", 
             success :"Lecture deleted Successfully",
@@ -66,10 +66,12 @@ const lectureSilce = createSlice( {
         extraReducers : ( builder) => {
             builder
             .addCase(getCourseLectures.fulfilled , (state ,action) => { 
+                console.log(action) 
                 state.lectures = action?.payload?.lectures;
-
+                
             })
             .addCase(addLecture.fulfilled ,(state, action )=> {
+                console.log(action) 
                 state.lectures = action?.payload?.course?.lecture;
 
             })
