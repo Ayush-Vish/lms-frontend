@@ -9,8 +9,9 @@ import { addLecture } from "../../Redux/Slices/lecture.slice";
 function AddLecture ( ) {
 
     const courseDetails = useLocation().state
+    
     const dispatch = useDispatch() ;
-    const navigate = useNavigate() ;n
+    const navigate = useNavigate() ;    
     const [userInput , setUserInput ] = useState({
         id : courseDetails._id, 
         lecture :undefined,
@@ -18,13 +19,12 @@ function AddLecture ( ) {
         description : "", 
         videoSrc : ""
     });
-    function handleInputChange( )  {
+    function handleInputChange(e )  {
         const  { name , value } = e.target;
         setUserInput({
             ...userInput, 
             [name] : value
         })
-
     }
     function handleVideo (e) {
         const video = e.target.files[0];
@@ -36,14 +36,18 @@ function AddLecture ( ) {
         })
     }
 
-    async function onFormSubmit(e) { 
+    async function onFormSubmit(e) {  
+        
         e.preventDefault();
         if(!userInput.description && !userInput.id && !userInput.lecture && !userInput.title && !userInput.videoSrc) { 
             toast.error("All Fields are mandatory");
             return ;
 
         }
+        console.log(userInput);
         const response =await dispatch(addLecture(userInput)); 
+        console.log(response);
+        
         if(response?.payload?.success) {
             setUserInput({
                 id : courseDetails._id, 
@@ -83,19 +87,44 @@ function AddLecture ( ) {
                         <input
                         type="text"
                         name="title"
+                        id="title"
                         placeholder="Enter the title of the lecture "
                         onChange={handleInputChange}
                         className="bg-transparent px-3 py-1 border"
                         value={userInput.title}
                         />
                         <textarea
-                        type="text"
-                        name="description"
-                        placeholder="Enter the description of the lecture "
-                        onChange={handleInputChange}
-                        className="bg-transparent px-3 py-1 border resize-none overflow-y-scroll h-36"
-                        value={userInput.description}
+                            type="text"
+                            name="description"
+                            placeholder="Enter the description of the lecture "
+                            onChange={handleInputChange}
+                            className="bg-transparent px-3 py-1 border resize-none overflow-y-scroll h-36"
+                            value={userInput.description}
                         />
+                        {
+                            userInput.videoSrc ? (
+                                <video
+                                src={userInput.videoSrc}
+                                controls
+                                muted
+                                controlsList="nodownload nofullscreen "
+                                disablePictureInPicture
+                                className="object-fill rounded-tl-lg  rounded-tr-lg w-full "
+                                />
+                            
+                            ):(
+                                <div className="h-48 border flex items-center justify-center cursor-pointer ">
+                                    <label htmlFor="lecture" className="font-semibold text-xl cursor-pointer " >
+                                        Choose your video 
+                                    </label>
+                                    <input type="file" className="hidden" id="lecture" onChange={handleVideo} name="lecture"   />
+
+                                </div>
+                            )
+                        }
+                        <button type="submit"  className=" btn  btn-primary py-1 font-semibold  " >
+                            Add new Lecture 
+                        </button>
                         
 
 

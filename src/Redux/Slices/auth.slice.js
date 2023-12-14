@@ -15,7 +15,7 @@ export const createAccount  = createAsyncThunk("/auth/signup" , async( data) => 
             loading: "Wait! Creating your account" , 
             success : (data ) =>{  
                 
-                return data?.data
+                return data?.data?.message
             }, 
             error : "Failed to create a account" 
         })
