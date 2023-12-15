@@ -22,20 +22,17 @@ function CourseCard ({data}) {
                     <p className="font-semibold"> 
                         <span className="text-yellow-500 font-bold" >
                             Category:
-                        </span>
-                        {data.category}
+                        </span> {data.category}
                     </p>
                     <p className="font-semibold"> 
                         <span className="text-yellow-500 font-bold" >
                             Total Lectures:
-                        </span>
-                        {data?.numberOfLectures}
+                        </span> {data?.numberOfLectures}
                     </p>
                     <p className="font-semibold"> 
                         <span className="text-yellow-500 font-bold" >
                             Instructor
-                        </span>
-                        {data?.createdBy}
+                        </span> {data?.createdBy}
                     </p>
                 </div>
             </div>

@@ -5,15 +5,14 @@ import HomeLayout from "../LAyout/HomeLayout"
 function  HomePage ()  { 
     return (
         <HomeLayout>
-            <div className="pt-10 flex-col-reverse md:flex-row lg:flex-row w-screen text-white flex items-center justify-center gap-10 mx-16 h-[90vh]"  >
-                <div className="w-1/2 space-y-6"  >
+            <div className="  flex-col-reverse sm:flex-row lg:flex-row  text-white flex items-center justify-center gap-10 mx-16 h-[90vh]"  >
+                <div className="w-1/2 space-y-6 flex items-center flex-col text-center justify-center "  >
                     <h1 className="text-5xl font-semibold " > 
-                        Find Out Best 
-                        <span className="text-yellow-400 font-bold"  >
+                        Find Out Best <span className="text-yellow-400 font-bold"  >
                             Online Courses
                         </span>
                     </h1>
-                    <p  className="text-xl text-gray-200 "  > 
+                    <p  className="text-xl w-[80%] text-gray-200 "  > 
                         We Have a Large Library of Courses taught by highly skilled and qualified faculties at an affordable cost
 
                     </p>
