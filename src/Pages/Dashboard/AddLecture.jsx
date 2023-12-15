@@ -44,9 +44,7 @@ function AddLecture ( ) {
             return ;
 
         }
-        console.log(userInput);
         const response =await dispatch(addLecture(userInput)); 
-        console.log(response);
         
         if(response?.payload?.success) {
             setUserInput({

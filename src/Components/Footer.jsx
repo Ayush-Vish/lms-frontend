@@ -5,7 +5,7 @@ const YEAR = new Date().getFullYear()
 function Footer ()  {
     return (
         <>
-            <footer className="relative left-0 bottom-0 h-[11vh]  flex p-5 flex-col sm:flex-row items-center justify-between gap-2 p-4 text-white bg-gray-800 sm:px-20" >
+            <footer className="relative left-0 bottom-0 h-[11vh]  flex  flex-col sm:flex-row items-center justify-between gap-2 p-4 text-white bg-gray-800 sm:px-20" >
                 <section>
                     Copyright {YEAR} | All rights Reserved 
                 </section>

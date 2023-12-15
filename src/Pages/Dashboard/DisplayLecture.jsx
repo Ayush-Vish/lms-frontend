@@ -12,10 +12,7 @@ function DisplayLectures ( )   {
     const {state}= useLocation( ) ;
     const {lectures} = useSelector(state =>state.lecture);
     const   {role } = useSelector(state => state.auth); 
-    const [currentVideo , setCurrentVideo] = useState(0)  
-    console.log(lectures)
-    console.log(state) ;
-    
+    const [currentVideo , setCurrentVideo] = useState(0);        
     async function onLectureDelete ( courseId , lectureId  )  { 
         const data =  { 
             courseId , lectureId
@@ -39,7 +36,9 @@ function DisplayLectures ( )   {
                 <div className="text-center text-2xl font-semibold text-yellow-500 ">
                     Course Name: { state.title}
                 </div>
-                {lectures &&    ( <div className="flex justify-center gap-10 w-full  ">
+                {lectures ? 
+
+                  ( <div className="flex justify-center gap-10 w-full  ">
                     {/* Left section for playing videos */} 
                     <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
                         <video
@@ -95,7 +94,15 @@ function DisplayLectures ( )   {
                             )
                         })}
                     </ul>
-                </div> ) }  
+                </div> ) : 
+                    
+                        role == "ADMIN" && (
+                            <button onClick={() => navigate("/course/addlecture" , {state : {...state}})} className="btn-primary px-2 py-1 rounded-md font-bold text-sm " >
+                                Add new lecture
+                            </button>
+                        )
+                    
+                }  
 
 
             </div>
