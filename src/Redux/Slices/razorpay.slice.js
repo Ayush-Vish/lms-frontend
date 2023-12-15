@@ -88,7 +88,7 @@ const razorpaySlice = createSlice({
         .addCase(verifyUserPayment.rejected  ,(state ,action) => {
             toast.success(action.payload.message) ;
             
-            state.isPaymentVerified = action.payload.success;
+            state.isPaymentVerified = action.payload.success.toString() ;
         })
         .addCase(verifyUserPayment.fulfilled , (state   ,action )=> {
             toast.success(action?.payload?.message) ;

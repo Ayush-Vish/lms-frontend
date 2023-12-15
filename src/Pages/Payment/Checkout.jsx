@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import toast from "react-hot-toast";
 import {BiRupee} from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux";
@@ -16,19 +16,21 @@ function Checkout ( )  {
     const subscription_id = useSelector(state => state.razorpay.subscription_id) 
     const userData = useSelector(state => state.auth.data) ; 
     const isPaymentVerified = useSelector(state=> state.razorpay.isPaymentVerified);
-
+    console.log(razorpayKey , subscription_id , userData , isPaymentVerified , "checkout"  )
     const paymentDetails  = {
         razorpay_payment_id:"",
         razorpay_subscription_id:"", 
         razorpay_signature: ""
     } 
 
-    async function load ( ) {
-        await dispatch(getRazorpayId()) ;
-        await dispatch (purchaseCourseBundle());
-        
+   
+    const load = useCallback(
+        async ( )=> {
+            await dispatch(getRazorpayId()) ;
+            await dispatch (purchaseCourseBundle());
 
-    }
+        },[dispatch]
+    )
 
     async function handleSubscription (e) {
         e.preventDefault() ;
