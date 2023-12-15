@@ -28,17 +28,14 @@ export const createAccount  = createAsyncThunk("/auth/signup" , async( data) => 
 export const login  = createAsyncThunk("/auth/login" , async( data) => {
     try {
         const res =  axiosInstance.post("user/login" ,data) ;   
-        console.log((await res).data)  
 
         toast.promise(res , {
             loading: "Wait! Authentication in progress..." , 
             success : (data ) =>{  
-                console.log(data)
                 return data?.data?.message 
             }, 
             error : "Failed to login " 
         })
-        console.log((await res).data)
         return (await res).data; 
 
     } catch (e) { 
@@ -94,14 +91,12 @@ const authSlice = createSlice({
 
         builder
         .addCase(login.fulfilled , (state ,action  ) =>{
-            console.log(state)
             localStorage.setItem("data" ,JSON.stringify(action?.payload?.user)); 
             localStorage.setItem("isLoggedIn" ,true ) 
             localStorage.setItem("role" ,action?.payload?.user?.role ) 
             state.isLoggedIn =true 
             state.data =action.payload?.user
             state.role =  action?.payload?.user.role 
-            console.log(state)
         })
         .addCase(logout.fulfilled , (state ,action )=>  {
             localStorage.clear() 
@@ -110,7 +105,6 @@ const authSlice = createSlice({
             state.role =  ""
         })
         .addCase(getUserData.fulfilled , (state , action  ) => {
-            console.log(action.payload)
             localStorage.setItem("data" ,JSON.stringify(action?.payload?.user[0])); 
             localStorage.setItem("isLoggedIn" ,true ) 
             localStorage.setItem("role" ,action?.payload?.user[0]?.role ) 

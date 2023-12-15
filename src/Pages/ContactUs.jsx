@@ -11,7 +11,6 @@ function ContactUs() {
     }) 
     function handleUserInput(e)  {
         const {name , value} = e.target;
-        console.log(name , value) 
         setUserInput({
             ...userInput, 
             [name] : value 

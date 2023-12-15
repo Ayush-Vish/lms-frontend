@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import HomeLayout from "../../LAyout/HomeLayout"
-import { getRazorpayId, purchaseCourseBundle, verifyUserPayment } from "../../Redux/Slices/razorpay.slice";
 import { getUserData } from "../../Redux/Slices/auth.slice";
+import { getRazorpayId, purchaseCourseBundle, verifyUserPayment } from "../../Redux/Slices/razorpay.slice";
 
 function Checkout ( )  {
 
@@ -16,7 +16,6 @@ function Checkout ( )  {
     const subscription_id = useSelector(state => state.razorpay.subscription_id) 
     const userData = useSelector(state => state.auth.data) ; 
     const isPaymentVerified = useSelector(state=> state.razorpay.isPaymentVerified);
-    console.log(isPaymentVerified);
 
     const paymentDetails  = {
         razorpay_payment_id:"",

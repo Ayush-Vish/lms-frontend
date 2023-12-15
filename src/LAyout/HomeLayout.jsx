@@ -20,7 +20,6 @@ function HomeLayout({ children }) {
 
   const changeWidth = () => {
     const drawerSide = document.getElementsByClassName("drawer-side");
-    console.log("jhfdgvhjvsd")
     drawerSide[0].style.width = "auto";
   };
   function  hideDrawer () { 
@@ -38,7 +37,7 @@ function HomeLayout({ children }) {
     
   }
   return (
-    <div className="min-h-[90vh]">
+    <div className="min-h-[90vh] bg-[#1F2937]    ">
       
       {/* This is the sidebar  */}
       <div className="drawer absolute left-0 z-50 w-fit ">

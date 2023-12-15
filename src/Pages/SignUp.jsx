@@ -45,7 +45,6 @@ function SignUp() {
   }
 
   async function createNewAccount(e) { 
-    console.log(signUpData)
     e.preventDefault();
     if (!signUpData.email || !signUpData.password || !signUpData.fullName || !signUpData.confirmpassword) {
       toast.error("Please fill all details");
